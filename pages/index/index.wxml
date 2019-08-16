@@ -1,1 +1,39 @@
-<view>首页</view>
+<view class="container">
+  <!-- 搜索 -->
+  <view class="search">
+    <view class="search_input">
+      <icon type="search" size="16" />搜索
+    </view>
+  </view>
+  <!-- 轮播图 -->
+  <view class="swiper">
+    <swiper indicator-dots autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-color indicator-active-color="#fff">
+      <block wx:for="{{imgUrls}}" wx:key="{{index}}">
+        <swiper-item>
+          <image src="{{item.image_src}}" class="slide-image" mode="aspectFill" />
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+  <!-- 导航菜单 -->
+  <view class="menus">
+    <image src="{{item.image_src}}" wx:for="{{menus}}" wx:key="{{index}}"></image>
+  </view>
+  <!-- 楼层 -->
+  <view class="floor" wx:for="{{floor}}" wx:key="{{index}}">
+    <view class="floor_title">
+      <image src="{{item.floor_title.image_src}}" mode="aspectFill"></image>
+    </view>
+    <!-- 楼层内容 -->
+    <view class="floor_content">
+      <view class="floor_contnet_left">
+        <image src="{{item.product_list[0].image_src}}"></image>
+      </view>
+      <view class="floor_contnet_right">
+        <image wx:for="{{item.product_list}}" wx:key="{{index}}"
+         wx:if="{{index > 0}}" src="{{item.image_src}}"></image>
+
+      </view>
+    </view>
+  </view>
+</view>

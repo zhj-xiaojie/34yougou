@@ -1,0 +1,10 @@
+
+<view class="address">
+ <view>
+ <text>收货人： 苏老板</text>
+ <text>18888888888</text>
+ </view>
+ <view>
+ 收货地址： 广东省天河区xxxxxxx
+ </view>
+</view>

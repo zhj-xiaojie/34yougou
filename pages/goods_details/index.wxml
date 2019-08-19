@@ -1,0 +1,63 @@
+<view class="details">
+  <!-- 大图 -->
+  <swiper class="swiper" indicator-dots="{{indicatorDots}}" indicator-active-color="#fff" indicator-color duration>
+    <block>
+      <swiper-item wx:for="{{details.pics}}" wx:key="{{index}}">
+        <image src="{{item.pics_big}}" class="slide-image" />
+      </swiper-item>
+    </block>
+  </swiper>
+
+  <view class="goods">
+    <!-- 价格 -->
+    <view class="goods_price">￥
+      <text>{{details.goods_price}}</text>
+    </view>
+    <!-- 商品标题 -->
+    <view class="goods_title">
+      <view class="goods_title_l">
+        {{details.goods_name}}</view>
+      <view class="goods_title_r">
+        <view class="iconfont icon-shoucang"></view>
+        <text>收藏</text>
+      </view>
+    </view>
+    <view class="express">
+      快递：免运费
+    </view>
+  </view>
+</view>
+
+<!-- 底部栏 -->
+<view class="footer">
+  <view class="promotion">
+<text>促销</text>
+<text>满300减30元</text>
+</view>
+  <!--底部栏左边  -->
+  <view class="footer_bar">
+  <!-- 联系客服按钮 -->
+<button class="service_input" open-type="contact" bindcontact="handleContact"></button>
+    <view class="footer_l">
+    <!-- 联系客服 -->
+    <view class="service">
+      <view class="iconfont icon-kefu"></view>
+      <view>联系客服</view>
+    </view>
+    <!-- 购物车 -->
+    <view class="shopping">
+      <view class="iconfont icon-gouwuche"></view>
+      <view>购物车</view>
+    </view>
+    </view>
+    <!--底部栏右边 -->
+    <view class="footer_r">
+      <view>加入购物车</view>
+      <view>立即购买</view>
+    </view>
+  </view>
+
+</view>
+
+<!-- 商品详情 -->
+<rich-text nodes="{{details.goods_introduce}}"></rich-text>

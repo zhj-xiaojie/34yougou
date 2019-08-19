@@ -8,11 +8,12 @@ Page({
     tab: 0,
     // 商品列表数据
     goods: [],
-    keyword:'',
+    keyword: '',
+    hasMore: true,
     // 当前页数
-    pagenum:1,
+    pagenum: 1,
     // 页条数
-    pagesize:10,
+    pagesize: 10,
   },
   // 点击获取当前tab栏索引值
   getTab(event) {
@@ -25,34 +26,59 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-   this.setData({
-     keyword: options.keyword
-   })
-   
+    this.setData({
+      keyword: options.keyword
+    })
+    //  请求数据
+    this.getData()
+  },
+
+  //  请求列表数据
+  getData() {
+    const { keyword, pagenum, pagesize } = this.data
     request({
       url: '/goods/search',
-      data:{
-        query: options.keyword
+      data: {
+        query: keyword,
+        pagenum,
+        pagesize
       }
     }).then(res => {
-      // console.log(res)
-      const { goods } = res.data.message;
+       const { goods } = res.data.message;
+      //  console.log(goods)
+      //  判断数据加载数量来显示hasMore
+      if (goods.length < this.data.pagesize) {
+        this.setData({
+          hasMore: false
+        })
+      }
       //  循坏每个商品修改价格，保留2位小数
       const newGoods = goods.map(v => {
         v.goods_price = Number(v.goods_price).toFixed(2)
         return v
       })
       this.setData({
-        goods: newGoods
+        // 新旧数据合并
+        goods: [...this.data.goods, ...newGoods]
       })
     })
   },
 
   /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
+  * 页面上拉触底事件的处理函数
+  */
+  onReachBottom: function () {
+    // 判断是否还又数据
+    if (!this.data.hasMore) {
+      return
+    }
 
+    // 页数加1，不要让数据覆盖掉
+    this.setData({
+      pagenum: this.data.pagenum + 1
+    })
+    //  请求数据
+    this.getData()
   },
 
   /**
@@ -83,12 +109,7 @@ Page({
 
   },
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
 
-  },
 
   /**
    * 用户点击右上角分享

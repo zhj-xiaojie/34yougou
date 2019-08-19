@@ -69,3 +69,13 @@
 .goods_price text{
   font-size: 20px;
 }
+
+/* 加载更多 */
+.load_more{
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  font-size: 14px;
+  margin-top: 10rpx;
+  color: #666;
+}

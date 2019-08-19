@@ -1,8 +1,7 @@
 <!-- 搜索栏 -->
 <view class="search">
   <view class="search_input">
-    <icon type="search" size="16" />
-    {{keyword}}
+    <icon type="search" size="16" /> {{keyword}}
   </view>
 </view>
 <!-- tab栏 -->
@@ -13,7 +12,7 @@
 <!-- 商品列表 -->
 <view class="goods_list">
   <!-- 单个 -->
-  <view class="goods_item" wx:for="{{goods}}" wx:key="{{index}}">
+  <navigator url="/pages/goods_details/index?id={{item.goods_id}}" class="goods_item" wx:for="{{goods}}" wx:key="{{index}}">
     <image src="{{item.goods_small_logo}}"></image>
     <view class="goods_right">
       <view class="goods_title">{{item.goods_name}}</view>
@@ -21,5 +20,7 @@
         <text>{{item.goods_price}}</text>
       </view>
     </view>
-  </view>
+  </navigator>
 </view>
+<!-- 加载更多 -->
+<view class="load_more">{{hasMore?'加载更多':'没有商品了'}}</view>

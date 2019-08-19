@@ -1,0 +1,26 @@
+/* 顶部搜索 */
+ .search {
+   position: fixed;
+   top: 0rpx;
+   left: 0rpx;
+   z-index: 8;
+   width: 100%;
+  padding: 20rpx 0;
+  background: #ff2d4a;
+}
+
+.search_input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  color: #999;
+  height: 60rpx;
+  background: #fff;
+  margin: 0 20rpx;
+  border-radius: 4px;
+}
+
+.search_input icon {
+  padding-right: 10rpx;
+}

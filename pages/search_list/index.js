@@ -5,26 +5,45 @@ Page({
    * 页面的初始数据
    */
   data: {
-    product: [],
-    indexs: 0,
+    tab: 0,
+    // 商品列表数据
+    goods: [],
+    keyword:'',
+    // 当前页数
+    pagenum:1,
+    // 页条数
+    pagesize:10,
   },
-  // 点击获取当前索引值
-  getProduct(event) {
-    const { index } = event.currentTarget.dataset;
+  // 点击获取当前tab栏索引值
+  getTab(event) {
+    const { index } = event.currentTarget.dataset
     this.setData({
-      indexs: index
+      tab: index
     })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+   this.setData({
+     keyword: options.keyword
+   })
+   
     request({
-      url: '/categories',
+      url: '/goods/search',
+      data:{
+        query: options.keyword
+      }
     }).then(res => {
-      const { message } = res.data;
+      // console.log(res)
+      const { goods } = res.data.message;
+      //  循坏每个商品修改价格，保留2位小数
+      const newGoods = goods.map(v => {
+        v.goods_price = Number(v.goods_price).toFixed(2)
+        return v
+      })
       this.setData({
-        product: message
+        goods: newGoods
       })
     })
   },

@@ -16,7 +16,6 @@ Page({
     request({
       url: '/home/floordata'
     }).then(res => {
-      console.log(res)
       const { message } = res.data;
       this.setData({
         floor: message

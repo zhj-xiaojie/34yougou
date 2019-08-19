@@ -1,1 +1,95 @@
-/* pages/category/index.wxss */
+/* 1 固定container高度100% */
+.container {
+  padding-top: 100rpx;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+ /* 产品左侧导航栏 */
+/* 2 继承了container的高度 */
+.product {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  height: 100%;
+}
+/* 3 菜单栏的布局，高度继承product的高度100%，为了出现滚动体需要脱离文档流  */
+.product_navs {
+  width: 200rpx;
+  background: #f5f5f5;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  overflow: scroll;
+}
+
+.product_title {
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+  color: #666;
+}
+
+.active {
+  background: #fff;
+  color: #ff2d4a;
+  position: relative;
+}
+
+.active::before {
+  position: absolute;
+  display: block;
+  content: '';
+  top: 20rpx;
+  left: 0;
+  width: 4px;
+  height: 60rpx;
+  background: #ff2d4a;
+}
+
+/* 右侧商品 */
+/*4 商品栏的布局，高度继承product的高度100%，为了出现滚动体需要脱离文档流  */
+.content {
+  position: absolute;
+  left: 200rpx;
+  right: 0;
+  height: 100%;
+  overflow: scroll;
+  box-sizing: border-box;
+  flex: 1;
+  margin: 30rpx;
+}
+
+.content_title {
+  text-align: center;
+  margin: 20rpx 0;
+}
+
+.content_title > text {
+  margin: 20rpx;
+  color: #999;
+}
+
+.commodity_list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.commodity_item {
+  width: 33.33%;
+  text-align: center;
+  margin-bottom: 20rpx;
+}
+
+.commodity_item image {
+  width: 120rpx;
+  height: 120rpx;
+}
+
+.commodity_item > view {
+  font-size: 14px;
+  color: #666;
+}
